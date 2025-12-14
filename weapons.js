@@ -11,7 +11,7 @@ const weapons = [
     { name: "AK-47", price: 6500, priceContract: 800000, ammo: "30/300", ammoPrice: "4500$ for 30", damage: "10/8/8", firerate: 750, reload: 2, accuracy: "±1.50m @ 50m" },
     { name: "Glock 18c", price: 3500, priceContract: 1100000, ammo: "19/285", ammoPrice: "380$ for 19", damage: "15/11/11", firerate: 750, reload: 3, accuracy: "±0.50m @ 25m" },
     { name: "ARX 160", price: 8000, priceContract: 1800000, ammo: "30/300", ammoPrice: "450$ for 30", damage: "10/8/8", firerate: 750, reload: 3, accuracy: "±1.10m @ 50m" },
-    { name: "M4A1", price: 8000, priceContract: 2000000, ammo: "30/420", ammoPrice: "600$ for 30", damage: "12/10/8", firerate: 1000, reload: 2, accuracy: "±0.90m @ 50m" },
+    { name: "M4A1", price: 8000, priceContract: 1400000, ammo: "30/420", ammoPrice: "600$ for 30", damage: "12/10/8", firerate: 1000, reload: 2, accuracy: "±0.90m @ 50m" },
     { name: "AWM", price: 8000, priceContract: 3500000, ammo: "5/40", ammoPrice: "750$ for 5", damage: "100/65/50", firerate: 30, reload: 3.5, accuracy: "±0.40m @ 50m" },
     { name: "Kriss Vector", price: 8000, priceContract: 3600000, ammo: "30/330", ammoPrice: "450$ for 30", damage: "9/7/6", firerate: 1200, reload: 2, accuracy: "±1.30m @ 50m" },
     { name: "M60", price: 8000, priceContract: 4200000, ammo: "100/800", ammoPrice: "1000$ for 100", damage: "18/12/10", firerate: 750, reload: 5, accuracy: "±4.40m @ 50m" }
@@ -56,3 +56,4 @@ function renderWeapons(sort = "high") {
 function sortWeapons(order) {
     document.getElementById("page-container").innerHTML = renderWeapons(order);
 }
+
