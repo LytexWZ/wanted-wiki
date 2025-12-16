@@ -45,9 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
        
         setTimeout(() => {
-            if (garageIntro) garageIntro.remove();
-        }, 3300);
-
+            setTimeout(() => {
+                if (garageIntro) garageIntro.remove();
+            }, 500);
+        }, 2800);
         document.querySelector('.tab[data-page="home"]').classList.add("active");
         loadPage("home");
     };
@@ -74,7 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     contentWrapper.addEventListener("click", (e) => {
         const btn = e.target.closest(".sort-btn");
-        if (!btn || !audioUnlocked) return;
+        if (!btn) return;
+        if (!audioUnlocked) return;
         if (clickSfx) {
             clickSfx.currentTime = 0;
             clickSfx.play().catch(() => {});
@@ -85,7 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     contentWrapper.addEventListener("mouseenter", (e) => {
         const btn = e.target.closest(".sort-btn");
-        if (!btn || !audioUnlocked) return;
+        if (!btn) return;
+        if (!audioUnlocked) return;
         if (hoverSfx) {
             hoverSfx.currentTime = 0;
             hoverSfx.play().catch(() => {});
@@ -105,17 +108,17 @@ document.addEventListener("DOMContentLoaded", () => {
             loadSfx.currentTime = 0;
             loadSfx.play().catch(() => {});
         }
-        
         let content = "";
-        if (page === "home" && typeof renderHome === "function") content = renderHome();
-        else if (page === "valuables" && typeof renderValuables === "function") content = renderValuables();
+        if (page === "home" && typeof renderHome === "function") {
+            content = renderHome();
+        } else if (page === "valuables" && typeof renderValuables === "function") content = renderValuables();
         else if (page === "atms" && typeof renderATMs === "function") content = renderATMs();
         else if (page === "weapons" && typeof renderWeapons === "function") content = renderWeapons();
         else if (page === "vehicles" && typeof renderVehicles === "function") content = renderVehicles();
         else if (page === "missions" && typeof renderMissions === "function") content = renderMissions();
         else if (page === "npcs" && typeof renderNPCs === "function") content = renderNPCs();
         else if (page === "locations" && typeof renderLocations === "function") content = renderLocations();
-        else content = `<h2>Work In Progress</h2><p style="text-align:center">Under construction...</p>`;
+        else content = `<h2>Work In Progress</h2><p>Under contruction...</p>`;
         container.innerHTML = content;
     }
 });
