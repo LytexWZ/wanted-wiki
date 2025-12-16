@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let audioUnlocked = false;
     const contentWrapper = document.querySelector(".content");
 
-    const openGarage = () => {
+    window.openGarage = () => {
         if (audioUnlocked) return;
         audioUnlocked = true;
 
@@ -18,7 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
             clickPrompt.classList.add("hidden");
         }
 
-        garageIntro.classList.add("open");
+        if (garageIntro) {
+            garageIntro.classList.add("open");
+        }
         
         if (clickSfx) {
             clickSfx.currentTime = 0;
@@ -33,16 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 if (garageIntro) garageIntro.remove();
             }, 500);
-
         }, 2800);
 
         document.querySelector('.tab[data-page="home"]').classList.add("active");
         loadPage("home");
     };
 
-    if (garageIntro) {
-        garageIntro.addEventListener("click", openGarage);
-    }
 
     document.querySelectorAll(".tab").forEach(tab => {
         tab.addEventListener("click", () => {
