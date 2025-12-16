@@ -1,7 +1,8 @@
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("page-container");
     const garageIntro = document.getElementById("garage-intro");
-    const clickPrompt = document.getElementById("click-prompt"); 
+    const clickPrompt = document.getElementById("click-prompt");
     const bgm = document.getElementById("bgm");
     const clickSfx = document.getElementById("sfx-click");
     const hoverSfx = document.getElementById("sfx-hover");
@@ -10,18 +11,31 @@ document.addEventListener("DOMContentLoaded", () => {
     let audioUnlocked = false;
     const contentWrapper = document.querySelector(".content");
 
+    const DEFAULT_VOLUME = 0.1;
+
+    if (volumeSlider) {
+        volumeSlider.value = DEFAULT_VOLUME;
+    }
+    if (bgm) {
+        bgm.volume = DEFAULT_VOLUME;
+    }
+
+    const savedVolume = localStorage.getItem("bgmVolume");
+    if (savedVolume !== null && volumeSlider && bgm) {
+        volumeSlider.value = savedVolume;
+        bgm.volume = savedVolume;
+    }
+
     window.openGarage = () => {
         if (audioUnlocked) return;
         audioUnlocked = true;
-
         if (clickPrompt) {
             clickPrompt.classList.add("hidden");
         }
-
         if (garageIntro) {
             garageIntro.classList.add("open");
         }
-        
+       
         if (clickSfx) {
             clickSfx.currentTime = 0;
             clickSfx.play().catch(() => {});
@@ -30,17 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
             bgm.volume = volumeSlider.value;
             bgm.play().catch(() => {});
         }
-        
+       
         setTimeout(() => {
             setTimeout(() => {
                 if (garageIntro) garageIntro.remove();
             }, 500);
         }, 2800);
-
         document.querySelector('.tab[data-page="home"]').classList.add("active");
         loadPage("home");
     };
-
 
     document.querySelectorAll(".tab").forEach(tab => {
         tab.addEventListener("click", () => {
@@ -87,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (volumeSlider && bgm) {
         volumeSlider.addEventListener("input", () => {
             bgm.volume = volumeSlider.value;
+            localStorage.setItem("bgmVolume", volumeSlider.value);
         });
     }
 
@@ -110,3 +123,4 @@ document.addEventListener("DOMContentLoaded", () => {
         container.innerHTML = content;
     }
 });
+</script>
